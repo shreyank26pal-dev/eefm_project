@@ -2,7 +2,7 @@
 
 ## 1. Getting started
 
-Open the deployed URL, or run `python app.py` and open http://127.0.0.1:5000. The left sidebar lists eight modules. The quickest tour is **Overview → Run full analysis**. That button runs the Live Twin under a stress preset, then a 5,000-run Monte Carlo valuation, then the tier comparison, and fills in the headline KPIs.
+Open the deployed URL (https://fintwin-0ae4.onrender.com), or run `python app.py` from the `backend` folder and open http://127.0.0.1:5000. The left sidebar lists eight modules. The quickest tour is **Overview → Run full analysis**. That button runs the Live Twin under a stress preset, then a 5,000-run Monte Carlo valuation, then the tier comparison, and fills in the headline KPIs.
 
 All money values are in $ to match the CIE-1 case study.
 
@@ -96,6 +96,6 @@ Lists the saved valuations. **Load** copies a scenario's inputs back into the va
 
 ## 10. Troubleshooting
 
-* **First request is slow:** the models are being trained. Run `python -m fdt.ml` once beforehand.
+* **First request is slow:** the models are being trained. Run `python -m fdt.ml` once beforehand, from the `backend` folder.
 * **"running scripts is disabled" in PowerShell:** run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 * **Render free instance sleeps:** the first visit after a period of inactivity takes about 30–50 s to wake.

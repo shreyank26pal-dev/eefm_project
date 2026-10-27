@@ -3,7 +3,7 @@ __pycache__/
 .venv/
 venv/
 *.db
-models/*.joblib
+backend/models/*.joblib
 .env
 .pytest_cache/
 ~$*

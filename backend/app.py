@@ -2,8 +2,8 @@
 FinTwin - Financial Digital Twin for Business
 Flask web application (CIE Activity 2 mini project, Group 6).
 
-Run locally:   python app.py          -> http://127.0.0.1:5000
-Production:    gunicorn app:app
+Run locally (from backend/):   python app.py   -> http://127.0.0.1:5000
+Production:                    gunicorn app:app --chdir backend
 """
 from __future__ import annotations
 
@@ -21,9 +21,12 @@ from fdt import ml
 from fdt.twin import BusinessProfile, Shock, simulate
 from fdt.valuation import TIERS, ValuationInput, compare_tiers, monte_carlo
 
-app = Flask(__name__)
+BACKEND = os.path.dirname(os.path.abspath(__file__))
+FRONTEND = os.path.join(os.path.dirname(BACKEND), "frontend")
+app = Flask(__name__, template_folder=os.path.join(FRONTEND, "templates"),
+            static_folder=os.path.join(FRONTEND, "static"))
 db.init()
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = BACKEND
 
 
 # ---------------------------------------------------------------------------

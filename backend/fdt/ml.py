@@ -33,8 +33,8 @@ from sklearn.model_selection import cross_val_predict, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(ROOT, "data")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))      # backend/
+DATA = os.path.join(os.path.dirname(ROOT), "dataset")                    # <repo>/dataset
 MODELS = os.path.join(ROOT, "models")
 RESULTS = os.path.join(ROOT, "experiments", "results")
 

@@ -20,7 +20,7 @@ FinTwin is a web-based, AI-enabled decision-support system. It mirrors a manufac
 | **Gap 2** — computational/energy overhead vs value | Hidden overheads priced; Lite / Standard / High-fidelity twin compared |
 | **Gap 4** — validation only in simulation | Failure model trained on the real **AI4I 2020** dataset; benefits *measured* by the twin rather than assumed |
 
-## Headline results (see `experiments/results/results.md`)
+## Headline results (see `backend/experiments/results/results.md`)
 
 * The survey's static case reproduces to within $67 (NPV $684,881).
 * With hidden overheads and risk priced in, the mean NPV falls to **$375k** (−45%). The discount rate rises from 10.0% to 13.5%.
@@ -47,17 +47,18 @@ Python 3.12 · Flask · NumPy · pandas · scikit-learn · SQLite · Chart.js (v
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1          # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-pip install -r requirements-dev.txt
-python data\generate_invoices.py       # builds the synthetic invoice ledger
+pip install -r backend\requirements-dev.txt
+python dataset\generate_invoices.py    # builds the synthetic invoice ledger
+cd backend
 python -m fdt.ml                        # trains both ML models (~10 s)
 python -m pytest -q                     # 9 tests should pass
 python app.py                           # open http://127.0.0.1:5000
 ```
 
-Reproduce all report numbers and figures:
+Reproduce all report numbers and figures (from `backend/`):
 
 ```powershell
-python -m experiments.run_experiments   # ~90 s; writes experiments/results/
+python -m experiments.run_experiments   # ~90 s; writes backend\experiments\results\
 ```
 
 Optional LLM advisor:
@@ -69,24 +70,40 @@ $env:GEMINI_API_KEY = "your-key"; python app.py
 ## Deploy (Render, free tier)
 
 1. Push this folder to a GitHub repository.
-2. On render.com: **New → Blueprint**, then pick the repo. `render.yaml` sets the build, which installs packages, builds the dataset and trains the models, and the start command (gunicorn).
+2. On render.com: **New → Blueprint**, then pick the repo. `render.yaml` installs `backend/requirements.txt`, builds the dataset, trains the models and starts gunicorn with `--chdir backend`.
 3. Optionally add `GEMINI_API_KEY` under Environment.
 
 ## Project structure
 
 ```
-app.py                  Flask routes / REST API
-fdt/economics.py        Engineering-economics engine (TVM, NPV, IRR, EUAC, Eq. 1–9, 21)
-fdt/twin.py             Operational-to-financial digital twin simulator
-fdt/valuation.py        Overhead-aware Monte-Carlo capital budgeting + tiers
-fdt/ml.py               Failure model (AI4I 2020) + DSO model
-fdt/advisor.py          LLM / rule-based advisor
-fdt/db.py               SQLite scenarios
-data/                   ai4i2020.csv (UCI, CC BY 4.0), invoice generator
-experiments/            Reproducible experiments, results, figures
-tests/                  Unit tests (survey case study replication)
-templates/, static/     Front end
-docs/                   Project report, user manual
+eefm/
+├── frontend/                   User interface (served by Flask)
+│   ├── templates/index.html    Single-page dashboard (8 modules)
+│   └── static/
+│       ├── app.js              UI logic, charts, API calls
+│       ├── style.css           Styling
+│       └── vendor/chart.umd.min.js   Chart.js 4.4.1 (bundled)
+├── backend/                    Python / Flask API
+│   ├── app.py                  Flask routes / REST API
+│   ├── fdt/
+│   │   ├── economics.py        Engineering-economics engine (TVM, NPV, IRR, EUAC, Eq. 1–9, 21)
+│   │   ├── twin.py             Operational-to-financial digital twin simulator
+│   │   ├── valuation.py        Overhead-aware Monte-Carlo capital budgeting + tiers
+│   │   ├── ml.py               Failure model (AI4I 2020) + DSO model
+│   │   ├── advisor.py          LLM / rule-based advisor
+│   │   └── db.py               SQLite scenarios
+│   ├── models/                 Trained models (generated, not committed)
+│   ├── experiments/            Reproducible experiments, results, figures
+│   ├── tests/                  Unit tests (survey case-study replication)
+│   ├── requirements.txt
+│   └── requirements-dev.txt
+├── dataset/
+│   ├── ai4i2020.csv            AI4I 2020 Predictive Maintenance (UCI #601, CC BY 4.0)
+│   ├── generate_invoices.py    Synthetic invoice-ledger generator
+│   └── invoices_synthetic.csv  Generated ledger (6,000 invoices)
+├── docs/                       Project report (PDF), user manual, screenshots
+├── render.yaml                 Render Blueprint (cloud deployment)
+└── Procfile
 ```
 
 ## Data credits

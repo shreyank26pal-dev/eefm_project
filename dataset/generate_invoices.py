@@ -8,7 +8,7 @@ facts: late payment grows with weak credit, large invoice size and long
 terms, and falls when delivery is digitally verified (Zhang et al. [A11],
 Vaghani et al. [A9]).
 
-Run:  python data/generate_invoices.py
+Run:  python dataset/generate_invoices.py   (from the repo root)
 """
 import numpy as np
 import pandas as pd

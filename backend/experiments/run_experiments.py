@@ -1,6 +1,6 @@
 """
 Reproducible experiments for the project report.
-Run from the project root:   python -m experiments.run_experiments
+Run from backend/:   python -m experiments.run_experiments
 Outputs: experiments/results/*.json, results.md and figures/*.png
 """
 from __future__ import annotations
