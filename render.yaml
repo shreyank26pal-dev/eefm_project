@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fintwin
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python data/generate_invoices.py && python -m fdt.ml
+    startCommand: gunicorn app:app --workers 2 --timeout 180 --bind 0.0.0.0:$PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: GEMINI_API_KEY
+        sync: false

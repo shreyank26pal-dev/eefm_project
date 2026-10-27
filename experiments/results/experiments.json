@@ -1,0 +1,444 @@
+{
+  "E1": {
+    "survey_reported": {
+      "npv": 684814,
+      "irr": 0.603,
+      "payback": 1.5
+    },
+    "fintwin_static": {
+      "npv": 684880.5269029064,
+      "irr": 0.6022916514174911,
+      "payback": 1.5031133284920168,
+      "flows": [
+        -450000,
+        299378.624,
+        299378.624,
+        299378.624,
+        299378.624,
+        299378.624
+      ]
+    },
+    "overhead_aware_expected": {
+      "npv": 657649.08546982,
+      "irr": 0.5153542252455747,
+      "discounted_payback": 2.1399529067847167,
+      "annual_worth": 173486.1719939066
+    },
+    "monte_carlo": {
+      "npv_mean": 375386.9258797824,
+      "npv_p5": 147561.6873261088,
+      "npv_p95": 631927.7440570303,
+      "prob_loss": 0.0028,
+      "cvar5": 96056.19359778837,
+      "irr_median": 0.39970040027163145,
+      "payback_median": 3.0
+    },
+    "sigma": 0.34549922131552757,
+    "r_sigma": 0.13454992213155276,
+    "overheads_pw": {
+      "energy": 8638.941060036883,
+      "refresh": 63110.44327573251,
+      "compliance": 68234.16184935205,
+      "opex": 171711.54490130453,
+      "ramp_loss": 154819.70247933883
+    },
+    "breakeven": {
+      "benefit_realisation_needed": 0.5366528454955348,
+      "breakeven_gross_benefit_static": 163690.24235763535
+    },
+    "tornado": [
+      {
+        "param": "b1_working_capital",
+        "low": -133528.27128618874,
+        "high": 133528.27128618886,
+        "range": 267056.5425723776
+      },
+      {
+        "param": "capex",
+        "low": 116268.92102501693,
+        "high": -116268.92102501693,
+        "range": 232537.84205003385
+      },
+      {
+        "param": "b2_credit_spread",
+        "low": -59290.294810960535,
+        "high": 59290.29481096042,
+        "range": 118580.58962192095
+      },
+      {
+        "param": "b3_failure_avoidance",
+        "low": -56933.18828942382,
+        "high": 56933.18828942382,
+        "range": 113866.37657884764
+      },
+      {
+        "param": "rm",
+        "low": 43595.72831947135,
+        "high": -41138.399465207825,
+        "range": 84734.12778467918
+      },
+      {
+        "param": "ramp_year1",
+        "low": -37566.54545454541,
+        "high": 37566.54545454541,
+        "range": 75133.09090909082
+      },
+      {
+        "param": "shock_benefit",
+        "low": -34117.08092467603,
+        "high": 34117.08092467603,
+        "range": 68234.16184935207
+      },
+      {
+        "param": "shock_prob",
+        "low": -34117.08092467603,
+        "high": 34117.08092467603,
+        "range": 68234.16184935207
+      },
+      {
+        "param": "energy_price",
+        "low": 1727.7882120073773,
+        "high": -1727.7882120073773,
+        "range": 3455.5764240147546
+      }
+    ]
+  },
+  "E2": {
+    "measured": {
+      "steady": {
+        "B1_working_capital": [
+          84419.04937219448,
+          1923.4962789284045
+        ],
+        "B2_credit_spread": [
+          93771.7740316963,
+          885.1877554074947
+        ],
+        "B3_failure_avoidance": [
+          4920.0,
+          16020.786497547491
+        ],
+        "total": [
+          183110.82340389077,
+          16021.911407888048
+        ]
+      },
+      "stress": {
+        "B1_working_capital": [
+          92645.94211705246,
+          1957.9125532627422
+        ],
+        "B2_credit_spread": [
+          91053.68313787316,
+          598.2628383428787
+        ],
+        "B3_failure_avoidance": [
+          197515.61643835614,
+          47753.672863806896
+        ],
+        "total": [
+          381215.24169328174,
+          46496.37338059845
+        ]
+      }
+    },
+    "operations": {
+      "steady": {
+        "baseline": {
+          "avg_ccc": 55.14955800555521,
+          "avg_dio": 48.17389809824821,
+          "avg_dso": 41.998316141142126,
+          "avg_loan_rate": 0.14098544896108983,
+          "failures": 39.4,
+          "replacements": 48.0,
+          "derates": 0.0,
+          "maint_cost": 412200.0
+        },
+        "twin": {
+          "avg_ccc": 36.2632729669282,
+          "avg_dio": 34.1290638756042,
+          "avg_dso": 37.15686532515912,
+          "avg_loan_rate": 0.10347673934841135,
+          "failures": 36.4,
+          "replacements": 66.4,
+          "derates": 0.0,
+          "maint_cost": 407280.0
+        }
+      },
+      "stress": {
+        "baseline": {
+          "avg_ccc": 57.6153521911602,
+          "avg_dio": 50.63965120833946,
+          "avg_dso": 41.99835721665586,
+          "avg_loan_rate": 0.14098544896108983,
+          "failures": 68.2,
+          "replacements": 43.4,
+          "derates": 0.0,
+          "maint_cost": 665880.0
+        },
+        "twin": {
+          "avg_ccc": 36.66087704999022,
+          "avg_dio": 34.467224345271525,
+          "avg_dso": 37.21630893855382,
+          "avg_loan_rate": 0.1045639757059406,
+          "failures": 39.0,
+          "replacements": 66.0,
+          "derates": 39.8,
+          "maint_cost": 468364.3835616439
+        }
+      }
+    },
+    "shock_benefit": 198104.41828939097,
+    "valuation_measured": {
+      "static_npv": 73619.28168436917,
+      "mc_mean": -73300.24197341184,
+      "prob_loss": 0.712,
+      "irr_median": 0.1055910800919101,
+      "npv_p5": -285018.4173486735
+    }
+  },
+  "E4": {
+    "failure_model": {
+      "LogisticRegression": {
+        "roc_auc": 0.9403,
+        "pr_auc": 0.5018,
+        "f1_at_0.5": 0.3486,
+        "cost_opt_threshold": 0.06,
+        "f1_at_cost_threshold": 0.371,
+        "recall_at_cost_threshold": 0.8118,
+        "alarms_raised": 287,
+        "expected_cost": 727000.0,
+        "run_to_failure_cost": 2125000.0,
+        "saving_vs_run_to_failure_pct": 65.79
+      },
+      "RandomForest": {
+        "roc_auc": 0.9716,
+        "pr_auc": 0.8449,
+        "f1_at_0.5": 0.7947,
+        "cost_opt_threshold": 0.2,
+        "f1_at_cost_threshold": 0.8272,
+        "recall_at_cost_threshold": 0.7882,
+        "alarms_raised": 77,
+        "expected_cost": 465000.0,
+        "run_to_failure_cost": 2125000.0,
+        "saving_vs_run_to_failure_pct": 78.12
+      },
+      "HistGradientBoosting": {
+        "roc_auc": 0.9634,
+        "pr_auc": 0.8354,
+        "f1_at_0.5": 0.7838,
+        "cost_opt_threshold": 0.08,
+        "f1_at_cost_threshold": 0.732,
+        "recall_at_cost_threshold": 0.8353,
+        "alarms_raised": 109,
+        "expected_cost": 407000.0,
+        "run_to_failure_cost": 2125000.0,
+        "saving_vs_run_to_failure_pct": 80.85
+      }
+    },
+    "failure_selected": {
+      "model": "HistGradientBoosting",
+      "threshold": 0.08,
+      "c_fn": 25000.0,
+      "c_fp": 1500.0,
+      "n_train": 7500,
+      "n_test": 2500,
+      "test_failures": 85,
+      "dataset": "AI4I 2020 (UCI #601)"
+    },
+    "dso_model": {
+      "Naive (terms + past delay)": {
+        "mae_days": 5.84,
+        "r2": 0.7419
+      },
+      "LinearRegression": {
+        "mae_days": 2.894,
+        "r2": 0.9355
+      },
+      "GradientBoosting": {
+        "mae_days": 2.904,
+        "r2": 0.9348
+      },
+      "twin_effect_days": 6.32
+    }
+  },
+  "E5": [
+    {
+      "interval": 120,
+      "scenario": "steady",
+      "baseline_cost": 445200.0,
+      "twin_cost": 407280.0,
+      "baseline_fail": 36.4,
+      "twin_fail": 36.4
+    },
+    {
+      "interval": 120,
+      "scenario": "overload",
+      "baseline_cost": 894960.0,
+      "twin_cost": 516182.4657534246,
+      "baseline_fail": 88.4,
+      "twin_fail": 40.6
+    },
+    {
+      "interval": 160,
+      "scenario": "steady",
+      "baseline_cost": 412200.0,
+      "twin_cost": 407280.0,
+      "baseline_fail": 36.6,
+      "twin_fail": 36.4
+    },
+    {
+      "interval": 160,
+      "scenario": "overload",
+      "baseline_cost": 871920.0,
+      "twin_cost": 516182.4657534246,
+      "baseline_fail": 89.2,
+      "twin_fail": 40.6
+    },
+    {
+      "interval": 200,
+      "scenario": "steady",
+      "baseline_cost": 412200.0,
+      "twin_cost": 407280.0,
+      "baseline_fail": 39.4,
+      "twin_fail": 36.4
+    },
+    {
+      "interval": 200,
+      "scenario": "overload",
+      "baseline_cost": 869160.0,
+      "twin_cost": 516182.4657534246,
+      "baseline_fail": 91.4,
+      "twin_fail": 40.6
+    },
+    {
+      "interval": 240,
+      "scenario": "steady",
+      "baseline_cost": 627600.0,
+      "twin_cost": 407280.0,
+      "baseline_fail": 68.0,
+      "twin_fail": 36.4
+    },
+    {
+      "interval": 240,
+      "scenario": "overload",
+      "baseline_cost": 1032000.0,
+      "twin_cost": 516182.4657534246,
+      "baseline_fail": 113.2,
+      "twin_fail": 40.6
+    }
+  ],
+  "E6": {
+    "twin_365d_s": 2.2010805620000156,
+    "mc_1000": {
+      "seconds": 0.006481296999936603,
+      "npv_mean": 375677.63412879646,
+      "std_error": 4837.207142743617
+    },
+    "mc_5000": {
+      "seconds": 0.02350647499997649,
+      "npv_mean": 375386.9258797824,
+      "std_error": 2085.3856441111907
+    },
+    "mc_20000": {
+      "seconds": 0.08812384700013354,
+      "npv_mean": 371052.757053892,
+      "std_error": 1052.6988200068276
+    },
+    "tiers_s": 0.0691257629998745
+  },
+  "E3": {
+    "survey_benefits": {
+      "rows": [
+        {
+          "tier": "lite",
+          "label": "Lite twin (daily batch sync, RFID + ERP, cloud ML)",
+          "capex": 150000,
+          "static_npv": 370735.02592272,
+          "risk_adj_npv_mean": 258241.64335662554,
+          "npv_p5": 158767.58609162836,
+          "prob_loss": 0.0,
+          "irr_median": 0.61957927294036,
+          "r_sigma": 0.1270122649883257,
+          "overhead_pw": 23333.73932508956,
+          "co2_t": 0.8396459999999999
+        },
+        {
+          "tier": "standard",
+          "label": "Standard twin (IoT edge + 66 W edge AI + smart-contract factoring) = survey case",
+          "capex": 450000,
+          "static_npv": 684880.5269029064,
+          "risk_adj_npv_mean": 375386.9258797824,
+          "npv_p5": 147561.6873261088,
+          "prob_loss": 0.0028,
+          "irr_median": 0.39970040027163145,
+          "r_sigma": 0.13454992213155276,
+          "overhead_pw": 139983.54618512143,
+          "co2_t": 12.314808000000001
+        },
+        {
+          "tier": "high",
+          "label": "High-fidelity twin (6G + federated GNN + ZKP, sub-ms sync)",
+          "capex": 900000,
+          "static_npv": 243295.75510490432,
+          "risk_adj_npv_mean": -273271.8068980699,
+          "npv_p5": -547326.0539142631,
+          "prob_loss": 0.925,
+          "irr_median": 0.038936855057352004,
+          "r_sigma": 0.16983477778042477,
+          "overhead_pw": 341365.92857914564,
+          "co2_t": 67.17168
+        }
+      ],
+      "recommended": "standard",
+      "static_choice": "standard",
+      "max_prob_loss": 0.1
+    },
+    "measured_benefits": {
+      "rows": [
+        {
+          "tier": "lite",
+          "label": "Lite twin (daily batch sync, RFID + ERP, cloud ML)",
+          "capex": 150000,
+          "static_npv": 97437.06638416718,
+          "risk_adj_npv_mean": 52594.86294331157,
+          "npv_p5": -31043.483447895764,
+          "prob_loss": 0.1842,
+          "irr_median": 0.27392942909934226,
+          "r_sigma": 0.157552287276169,
+          "overhead_pw": 23333.73932508956,
+          "co2_t": 0.8396459999999999
+        },
+        {
+          "tier": "standard",
+          "label": "Standard twin (IoT edge + 66 W edge AI + smart-contract factoring) = survey case",
+          "capex": 450000,
+          "static_npv": 73619.28168436917,
+          "risk_adj_npv_mean": -73300.24197341184,
+          "npv_p5": -285018.4173486735,
+          "prob_loss": 0.712,
+          "irr_median": 0.1055910800919101,
+          "r_sigma": 0.18491871591526093,
+          "overhead_pw": 139983.54618512143,
+          "co2_t": 12.314808000000001
+        },
+        {
+          "tier": "high",
+          "label": "High-fidelity twin (6G + federated GNN + ZKP, sub-ms sync)",
+          "capex": 900000,
+          "static_npv": -485268.686848512,
+          "risk_adj_npv_mean": -731476.5931222992,
+          "npv_p5": -984073.860494083,
+          "prob_loss": 1.0,
+          "irr_median": -0.24285213511737058,
+          "r_sigma": 0.25128697109968917,
+          "overhead_pw": 341365.92857914564,
+          "co2_t": 67.17168
+        }
+      ],
+      "recommended": "lite",
+      "static_choice": "lite",
+      "max_prob_loss": 0.1
+    }
+  }
+}

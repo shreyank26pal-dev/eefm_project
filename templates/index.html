@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FinTwin · Financial Digital Twin for Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='vendor/chart.umd.min.js') }}"></script>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <div class="logo">FT</div>
+      <div><div class="bname">FinTwin</div><div class="bsub">Financial Digital Twin</div></div>
+    </div>
+    <nav id="nav">
+      <button data-tab="overview" class="active"><span>01</span>Overview</button>
+      <button data-tab="twin"><span>02</span>Live Twin</button>
+      <button data-tab="valuation"><span>03</span>Stochastic NPV</button>
+      <button data-tab="tiers"><span>04</span>Right-size Twin</button>
+      <button data-tab="replace"><span>05</span>Replacement</button>
+      <button data-tab="tvm"><span>06</span>TVM Toolkit</button>
+      <button data-tab="advisor"><span>07</span>AI Advisor</button>
+      <button data-tab="scenarios"><span>08</span>Scenarios</button>
+    </nav>
+    <div class="side-foot">CIE Activity 2 · Group 6<br><span id="llm-status">advisor: …</span></div>
+  </aside>
+
+  <main>
+    <!-- ================= OVERVIEW ================= -->
+    <section id="tab-overview" class="tab active">
+      <header class="page-h">
+        <div class="eyebrow">Engineering Economics × AI Digital Twin</div>
+        <h1>Is a Financial Digital Twin worth building, and how much of one?</h1>
+        <p class="lede">FinTwin mirrors a manufacturing SME's machines, inventory and invoices day by day, turns the physical state into financial state (CCC, working capital, credit score, loan rate, failure cost) and then prices the twin itself with an overhead-aware, Monte-Carlo capital-budgeting model.</p>
+        <button class="btn primary" id="run-all">Run full analysis</button>
+        <span class="muted" id="run-all-status"></span>
+      </header>
+
+      <div class="kpis" id="ov-kpis">
+        <div class="kpi"><div class="k-l">Static NPV (survey method)</div><div class="k-v" id="ov-static">–</div></div>
+        <div class="kpi"><div class="k-l">Risk-adjusted NPV (FinTwin)</div><div class="k-v" id="ov-risk">–</div></div>
+        <div class="kpi"><div class="k-l">Probability of loss</div><div class="k-v" id="ov-ploss">–</div></div>
+        <div class="kpi"><div class="k-l">Recommended twin tier</div><div class="k-v" id="ov-tier">–</div></div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Research gap addressed</h3>
+          <p>Our CIE-1 survey of 11 IEEE/ACM papers found that financial digital twins are justified with <b>static, deterministic NPV</b> (Survey Sec. 5) while the literature itself warns that their <b>computational, energy and integration overheads can erode the value they create</b> (Gap 2, Yoon et al. [A7]) and that results are <b>validated only in simulation</b> (Gap 4).</p>
+          <ol class="gap-list">
+            <li><b>Gap 2 → </b>price the twin's own hidden overheads (edge energy [A1], hardware refresh, compliance, ramp-up) and right-size its fidelity.</li>
+            <li><b>Eq. 4–5 → </b>replace static NPV with Monte-Carlo NPV discounted at a volatility-adjusted rate r(σ).</li>
+            <li><b>Gap 4 → </b>train the failure model on the real AI4I 2020 dataset and measure benefits from a twin simulation instead of assuming them.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Architecture</h3>
+          <div class="arch">
+            <div class="layer l1"><b>Physical layer</b><span>CNC spindles · inventory · shipments · invoices</span></div>
+            <div class="arrow">↓ telemetry</div>
+            <div class="layer l2"><b>AI twin layer</b><span>P<sub>fail</sub> model (AI4I) · DSO model · Eq. 7 replacement · derating</span></div>
+            <div class="arrow">↓ state mapping</div>
+            <div class="layer l3"><b>Financial layer</b><span>CCC · WC · credit score Eq. 8 · loan rate Eq. 9</span></div>
+            <div class="arrow">↓ benefits B1–B3</div>
+            <div class="layer l4"><b>Decision layer</b><span>Monte-Carlo NPV/IRR · r(σ) Eq. 5 · tiers · AI memo</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LIVE TWIN ================= -->
+    <section id="tab-twin" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 02</div>
+        <h1>Live operational-to-financial twin</h1>
+        <p class="lede">Two worlds run on common random numbers: a <b>baseline</b> (static ERP, time-based maintenance, lender sees history only) and the <b>twin</b> (ML condition-based replacement, derating, verified-delivery invoicing, real-time credit). Inject shocks and watch the financial state react.</p>
+      </header>
+      <div class="split">
+        <form class="card form" id="twin-form">
+          <h3>Business profile</h3>
+          <label>Annual revenue<input name="annual_revenue" type="number" step="100000"></label>
+          <div class="row3">
+            <label>DIO<input name="dio" type="number" step="1"></label>
+            <label>DSO<input name="dso" type="number" step="1"></label>
+            <label>DPO<input name="dpo" type="number" step="1"></label>
+          </div>
+          <div class="row2">
+            <label>Twin target DIO<input name="dio_twin" type="number" step="1"></label>
+            <label>Historical credit (0–1)<input name="credit_hist" type="number" step="0.05" min="0" max="1"></label>
+          </div>
+          <div class="row2">
+            <label>Machines<input name="n_machines" type="number" min="1" max="20"></label>
+            <label>Time-based interval (wear min)<input name="time_based_wear" type="number" step="10"></label>
+          </div>
+          <div class="row2">
+            <label>Failure cost<input name="c_failure" type="number" step="500"></label>
+            <label>Planned replacement cost<input name="c_replace" type="number" step="100"></label>
+          </div>
+          <div class="row2">
+            <label>Days to simulate<input name="days" type="number" value="365" min="60" max="730"></label>
+            <label>Random seed<input name="seed" type="number" value="11"></label>
+          </div>
+          <h3 class="mt">Disruption shocks</h3>
+          <div id="shock-list"></div>
+          <div class="btn-row">
+            <button type="button" class="btn ghost" id="add-shock">+ Add shock</button>
+            <button type="button" class="btn ghost" id="preset-shock">Load stress preset</button>
+          </div>
+          <div class="btn-row">
+            <button type="submit" class="btn primary">Run twin</button>
+            <button type="button" class="btn" id="send-benefits" disabled>Use measured benefits in NPV →</button>
+          </div>
+          <div class="muted small" id="twin-status"></div>
+        </form>
+        <div class="stack">
+          <div class="kpis small" id="twin-kpis"></div>
+          <div class="card"><div class="chart-h"><h3>Cash Conversion Cycle (days)</h3><span class="legend"><i class="sw base"></i>baseline <i class="sw twin"></i>twin</span></div><div class="ch"><canvas id="c-ccc"></canvas></div></div>
+          <div class="grid2">
+            <div class="card"><h3>Loan rate (Eq. 9)</h3><div class="ch sm"><canvas id="c-loan"></canvas></div></div>
+            <div class="card"><h3>Cumulative maintenance + failure cost</h3><div class="ch sm"><canvas id="c-maint"></canvas></div></div>
+          </div>
+          <div class="card"><h3>Fleet max P<sub>fail</sub> (ML, AI4I-trained)</h3><div class="ch sm"><canvas id="c-pfail"></canvas></div></div>
+          <div class="card"><h3>Baseline vs twin</h3><div id="twin-table"></div></div>
+          <div class="card"><h3>Eq. 7 replacement decisions (first 20)</h3><div id="twin-log" class="scroll"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VALUATION ================= -->
+    <section id="tab-valuation" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 03</div>
+        <h1>Overhead-aware stochastic capital budgeting</h1>
+        <p class="lede">Monte-Carlo NPV / IRR with benefit-realisation risk, revenue growth, disruption shocks and the twin's hidden overheads, discounted at the volatility-adjusted rate r(σ) = r<sub>f</sub> + β(r<sub>m</sub> − r<sub>f</sub>) + γσ (Survey Eq. 5).</p>
+      </header>
+      <div class="split">
+        <form class="card form" id="val-form">
+          <h3>Investment</h3>
+          <div class="row2">
+            <label>Twin tier<select name="tier"><option value="lite">Lite</option><option value="standard" selected>Standard (survey case)</option><option value="high">High-fidelity</option></select></label>
+            <label>Horizon (yr)<input name="horizon" type="number" min="1" max="15"></label>
+          </div>
+          <h3 class="mt">Annual benefits at full capture</h3>
+          <label>B1 working-capital saving<input name="b1_working_capital" type="number" step="1000"></label>
+          <label>B2 credit-spread saving<input name="b2_credit_spread" type="number" step="1000"></label>
+          <label>B3 failure / defect avoidance<input name="b3_failure_avoidance" type="number" step="1000"></label>
+          <div class="row2">
+            <label>Extra benefit in shock year<input name="shock_benefit" type="number" step="1000"></label>
+            <label>Shock probability / yr<input name="shock_prob" type="number" step="0.05" min="0" max="1"></label>
+          </div>
+          <div class="btn-row"><button type="button" class="btn ghost" id="reset-survey">Survey assumptions</button><button type="button" class="btn ghost" id="use-calib">Twin-measured</button></div>
+          <h3 class="mt">Discount rate (Eq. 5)</h3>
+          <div class="row3">
+            <label>r<sub>f</sub><input name="rf" type="number" step="0.005"></label>
+            <label>r<sub>m</sub><input name="rm" type="number" step="0.005"></label>
+            <label>β<input name="beta" type="number" step="0.05"></label>
+          </div>
+          <label>γ (risk premium per unit σ)<input name="gamma" type="number" step="0.01"></label>
+          <h3 class="mt">Uncertainty & overheads</h3>
+          <div class="row3">
+            <label>Realise low<input name="realisation_low" type="number" step="0.05"></label>
+            <label>mode<input name="realisation_mode" type="number" step="0.05"></label>
+            <label>high<input name="realisation_high" type="number" step="0.05"></label>
+          </div>
+          <div class="row2">
+            <label>Energy $/kWh<input name="energy_price" type="number" step="0.01"></label>
+            <label>Year-1 ramp-up<input name="ramp_year1" type="number" step="0.05"></label>
+          </div>
+          <div class="row2">
+            <label>Compliance % capex<input name="compliance_frac" type="number" step="0.01"></label>
+            <label>Simulations<input name="n_sims" type="number" step="1000" min="200" max="20000"></label>
+          </div>
+          <label class="check"><input type="checkbox" name="include_overheads" checked> Include hidden twin overheads (Gap 2)</label>
+          <div class="btn-row"><button class="btn primary" type="submit">Run Monte Carlo</button><button class="btn" type="button" id="save-val">Save scenario</button></div>
+          <div class="muted small" id="val-status"></div>
+        </form>
+        <div class="stack">
+          <div class="kpis small" id="val-kpis"></div>
+          <div class="grid2">
+            <div class="card"><h3>NPV distribution at r(σ)</h3><div class="ch"><canvas id="c-hist"></canvas></div></div>
+            <div class="card"><h3>From static NPV to risk-adjusted NPV</h3><div class="ch"><canvas id="c-bridge"></canvas></div></div>
+          </div>
+          <div class="grid2">
+            <div class="card"><h3>Annual net cash flow fan (P5–P50–P95)</h3><div class="ch"><canvas id="c-fan"></canvas></div></div>
+            <div class="card"><h3>Tornado: NPV swing for ±20%</h3><div class="ch"><canvas id="c-tornado"></canvas></div></div>
+          </div>
+          <div class="card"><h3>Engineering-economics summary</h3><div id="val-table"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TIERS ================= -->
+    <section id="tab-tiers" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 04</div>
+        <h1>How much twin is worth building?</h1>
+        <p class="lede">Each fidelity tier captures more benefit but costs more capital, energy, refresh and compliance. FinTwin picks the tier with the highest risk-adjusted NPV subject to a loss-probability limit, and flags <b>decision reversals</b> where static NPV says "accept" but the risk-aware model says "reject".</p>
+        <div class="btn-row"><label class="inline">Max P(loss) <input id="max-ploss" type="number" value="0.10" step="0.05" min="0" max="1"></label><button class="btn primary" id="run-tiers">Compare tiers</button><span class="muted small" id="tier-status"></span></div>
+      </header>
+      <div class="banner" id="tier-banner" hidden></div>
+      <div class="grid2">
+        <div class="card"><h3>Static vs risk-adjusted NPV</h3><div class="ch"><canvas id="c-tiers"></canvas></div></div>
+        <div class="card"><h3>Overheads & footprint</h3><div class="ch"><canvas id="c-tier-oh"></canvas></div></div>
+      </div>
+      <div class="card"><h3>Tier comparison</h3><div id="tier-table"></div></div>
+    </section>
+
+    <!-- ================= REPLACEMENT ================= -->
+    <section id="tab-replace" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 05</div>
+        <h1>Condition-based replacement (Survey Eq. 6–7)</h1>
+        <p class="lede">The challenger's economic life minimises EUAC (Eq. 6). The defender is kept only while its next-period marginal cost MC(t+1) = ΔS + r·S + E[O&M] + P<sub>fail</sub>·C<sub>cat</sub> (Eq. 7) stays below that minimum. P<sub>fail</sub> comes from live telemetry via the AI4I-trained model.</p>
+      </header>
+      <div class="split">
+        <form class="card form" id="rep-form">
+          <h3>Challenger (new asset)</h3>
+          <div class="row2"><label>Cost<input name="ch_cost" type="number" value="120000"></label><label>Salvage decline / yr<input name="ch_dep" type="number" value="0.20" step="0.05"></label></div>
+          <div class="row2"><label>O&M year 1<input name="ch_om0" type="number" value="6000"></label><label>O&M gradient<input name="ch_omg" type="number" value="2500"></label></div>
+          <h3 class="mt">Defender (current asset)</h3>
+          <div class="row2"><label>Original cost<input name="d_cost" type="number" value="100000"></label><label>Age (yr)<input name="d_age" type="number" value="3"></label></div>
+          <div class="row2"><label>O&M year 1<input name="d_om0" type="number" value="7000"></label><label>O&M gradient<input name="d_omg" type="number" value="3500"></label></div>
+          <div class="row2"><label>Salvage decline / yr<input name="d_dep" type="number" value="0.20" step="0.05"></label><label>Catastrophe cost<input name="c_cat" type="number" value="60000"></label></div>
+          <label>Interest rate<input name="rate" type="number" value="0.10" step="0.01"></label>
+          <h3 class="mt">Live telemetry (AI4I features)</h3>
+          <div class="row3">
+            <label>Type<select name="type"><option>L</option><option selected>M</option><option>H</option></select></label>
+            <label>Air K<input name="air_temp" type="number" value="301.5" step="0.1"></label>
+            <label>Process K<input name="proc_temp" type="number" value="311.0" step="0.1"></label>
+          </div>
+          <div class="row3">
+            <label>RPM<input name="rpm" type="number" value="1200"></label>
+            <label>Torque Nm<input name="torque" type="number" value="55" step="0.5"></label>
+            <label>Tool wear min<input name="tool_wear" type="number" value="200"></label>
+          </div>
+          <div class="btn-row"><button class="btn primary" type="submit">Evaluate</button></div>
+        </form>
+        <div class="stack">
+          <div class="grid2" id="rep-decisions"></div>
+          <div class="grid2">
+            <div class="card"><h3>Challenger EUAC vs service life (Eq. 6)</h3><div class="ch"><canvas id="c-euac"></canvas></div></div>
+            <div class="card"><h3>Defender marginal cost vs challenger EUAC*</h3><div class="ch"><canvas id="c-mc"></canvas></div></div>
+          </div>
+          <div class="card"><div id="rep-table"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TVM ================= -->
+    <section id="tab-tvm" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 06</div>
+        <h1>Time-value-of-money toolkit</h1>
+        <p class="lede">Present, future and annual worth, IRR, payback, interest factors, NPV profile and depreciation schedules for any cash-flow series.</p>
+      </header>
+      <div class="split">
+        <form class="card form" id="tvm-form">
+          <label>Cash flows (t = 0, 1, 2 …)<textarea name="cashflows" rows="3">-450000, 299360, 299360, 299360, 299360, 299360</textarea></label>
+          <label>Interest rate<input name="rate" type="number" value="0.10" step="0.01"></label>
+          <div class="row2"><label>Depreciable cost<input name="dep_cost" type="number" value="280000"></label><label>Salvage<input name="dep_salvage" type="number" value="28000"></label></div>
+          <div class="btn-row"><button class="btn primary" type="submit">Compute</button></div>
+        </form>
+        <div class="stack">
+          <div class="kpis small" id="tvm-kpis"></div>
+          <div class="grid2">
+            <div class="card"><h3>NPV profile</h3><div class="ch"><canvas id="c-npvprof"></canvas></div></div>
+            <div class="card"><h3>Interest factors & depreciation</h3><div id="tvm-table"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ADVISOR ================= -->
+    <section id="tab-advisor" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 07</div>
+        <h1>AI investment advisor</h1>
+        <p class="lede">Generates a CFO-ready memo from the latest twin, valuation and tier results. Uses Gemini/OpenAI when an API key is configured; otherwise a deterministic rule-based expert system, so it never invents numbers.</p>
+        <div class="btn-row"><button class="btn primary" id="gen-memo">Generate memo</button><span class="muted small" id="memo-status"></span></div>
+      </header>
+      <div class="grid2">
+        <div class="card memo" id="memo">Run the analysis first (Overview → Run full analysis), then generate a memo.</div>
+        <div class="card chat">
+          <h3>Ask the twin</h3>
+          <div id="chat-log"></div>
+          <form id="chat-form"><input name="q" placeholder="e.g. Is the investment worth it? Why is r(σ) higher than WACC?" autocomplete="off"><button class="btn primary">Ask</button></form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCENARIOS ================= -->
+    <section id="tab-scenarios" class="tab">
+      <header class="page-h compact">
+        <div class="eyebrow">Module 08</div>
+        <h1>Saved scenarios</h1>
+        <p class="lede">Valuation runs saved to the SQLite database.</p>
+      </header>
+      <div class="card"><div id="scen-table"></div></div>
+    </section>
+  </main>
+</div>
+<div id="toast" hidden></div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

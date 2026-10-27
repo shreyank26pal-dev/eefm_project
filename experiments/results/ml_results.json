@@ -1,0 +1,66 @@
+{
+  "failure_model": {
+    "LogisticRegression": {
+      "roc_auc": 0.9403,
+      "pr_auc": 0.5018,
+      "f1_at_0.5": 0.3486,
+      "cost_opt_threshold": 0.06,
+      "f1_at_cost_threshold": 0.371,
+      "recall_at_cost_threshold": 0.8118,
+      "alarms_raised": 287,
+      "expected_cost": 727000.0,
+      "run_to_failure_cost": 2125000.0,
+      "saving_vs_run_to_failure_pct": 65.79
+    },
+    "RandomForest": {
+      "roc_auc": 0.9716,
+      "pr_auc": 0.8449,
+      "f1_at_0.5": 0.7947,
+      "cost_opt_threshold": 0.2,
+      "f1_at_cost_threshold": 0.8272,
+      "recall_at_cost_threshold": 0.7882,
+      "alarms_raised": 77,
+      "expected_cost": 465000.0,
+      "run_to_failure_cost": 2125000.0,
+      "saving_vs_run_to_failure_pct": 78.12
+    },
+    "HistGradientBoosting": {
+      "roc_auc": 0.9634,
+      "pr_auc": 0.8354,
+      "f1_at_0.5": 0.7838,
+      "cost_opt_threshold": 0.08,
+      "f1_at_cost_threshold": 0.732,
+      "recall_at_cost_threshold": 0.8353,
+      "alarms_raised": 109,
+      "expected_cost": 407000.0,
+      "run_to_failure_cost": 2125000.0,
+      "saving_vs_run_to_failure_pct": 80.85
+    }
+  },
+  "failure_selected": {
+    "model": "HistGradientBoosting",
+    "threshold": 0.08,
+    "sklearn_version": "1.9.1",
+    "c_fn": 25000.0,
+    "c_fp": 1500.0,
+    "n_train": 7500,
+    "n_test": 2500,
+    "test_failures": 85,
+    "dataset": "AI4I 2020 (UCI #601)"
+  },
+  "dso_model": {
+    "Naive (terms + past delay)": {
+      "mae_days": 5.84,
+      "r2": 0.7419
+    },
+    "LinearRegression": {
+      "mae_days": 2.894,
+      "r2": 0.9355
+    },
+    "GradientBoosting": {
+      "mae_days": 2.904,
+      "r2": 0.9348
+    },
+    "twin_effect_days": 6.32
+  }
+}
